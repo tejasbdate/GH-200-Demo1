@@ -1,18 +1,21 @@
-name: var-demo
-on: 
+name: metrix-demo
+ 
+on:
 - push
 - workflow_dispatch
  
 jobs:
-  job-1:
-    runs-on: ubuntu-24.04
-    env:
-      MESSAGE: Hello India !
+  ## A Template Job
+  job-template:
+    strategy:
+      matrix:
+        java-version: [ 11, 17, 21 ]
+    runs-on: ubuntu-latest
     steps:
-      - run: echo $MESSAGE
-  job-2:
-    runs-on: ubuntu-24.04
-    steps:
-      - run: echo $MESSAGE
-        env:
-          MESSAGE: ${{ secrets.CONNECTION_STRING }}
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'termurin'
+        cache: maven
+    - run: mvn -B clean package
