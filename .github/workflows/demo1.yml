@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         java-version: [ 17, 21 ]
-        os-kind: [ 'windows', 'linux' ]
+        os-kind: [ 'windows', 'ubuntu' ]
     runs-on: ${{matrix.os-kind}}-latest
     steps:
     - uses: actions/checkout@v6.1.0
