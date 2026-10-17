@@ -16,6 +16,5 @@ jobs:
     - uses: actions/setup-java@v4
       with:
         java-version: ${{ matrix.java-version }}
-        distribution: 'termurin'
         cache: maven
     - run: mvn -B clean package
