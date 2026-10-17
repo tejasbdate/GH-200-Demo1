@@ -15,4 +15,4 @@ jobs:
     steps:
       - run: echo $MESSAGE
         env:
-          MESSAGE: ${{ secrets.MESSAGE }}
+          MESSAGE: ${{ secrets.CONNECTION_STRING }}
